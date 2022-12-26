@@ -1,10 +1,13 @@
-import express from "express";
-import mongosse from "mongosse";
-import bodyParser from "body-parse";
+require('dotenv').config()
+const express = require("express")
+const mongoose = require("mongoose")
+const bodyParser = require("body-parser")
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.9ju80xw.mongodb.net/?retryWrites=true&w=majority`
+const app = express()
 
 // Creating express app
-const uri = "mongodb+srv://nico:nico@cluster0.9ju80xw.mongodb.net/?retryWrites=true&w=majority";
-mongosse
+mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -15,3 +18,5 @@ mongosse
   .catch(e => {
     console.log("enculé", e);
   });
+
+  app.use(bodyParser.json())
