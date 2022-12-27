@@ -3,6 +3,8 @@ const axios = require("axios");
 
 const getTodos = () => {
   const state = ref({
+    author: "",
+    content: "",
     todos: {},
   });
 
@@ -21,7 +23,10 @@ const getTodos = () => {
   const addTodo = async () => {
     try {
       await axios
-        .post("http://localhost:2727/todos/create")
+        .post("http://localhost:2727/todos/create", {
+          author: state.value.author,
+          content: state.value.content
+        })
         .then(function () {
           getAllTodos()
         })

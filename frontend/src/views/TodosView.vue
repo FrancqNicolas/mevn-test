@@ -1,6 +1,12 @@
 <template>
   <div>
     <button @click="addTodo()">Nouvelle todo</button>
+    <div>
+      <input type="text" placeholder="Auteur" v-model="state.author">
+    </div>
+    <div>
+      <textarea v-model="state.content"></textarea>
+    </div>
     <div class="todo-container" v-for="todo in state.todos" :key="todo._id">
       <div>
         {{ todo.author }}

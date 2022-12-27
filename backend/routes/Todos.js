@@ -24,10 +24,7 @@ router.get("/remove/:id", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const createdTodo = new Todo({
-    content: "Manger des chips sucrés",
-    author: "Nico",
-  });
+  const createdTodo = new Todo(req.body);
 
   const savedTodo = await createdTodo.save();
   res.json(savedTodo);
