@@ -34,13 +34,17 @@ router.post("/create", async (req, res) => {
 });
 
 router.put("/update/:id", async (req, res) => {
-  const updatedTodo = {
+  const updatedTodo = await Todo.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
       content: "Manger des chips salés au sel",
       author: "Billy",
     }
+  );
 
-  const savedTodo = await Todo.updateOne(updatedTodo);
-  res.json(savedTodo);
+  res.json(updatedTodo);
 });
 
 module.exports = router;

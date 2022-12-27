@@ -18,9 +18,48 @@ const getTodos = () => {
     }
   };
 
+  const addTodo = async () => {
+    try {
+      await axios
+        .post("http://localhost:2727/todos/create")
+        .then(function () {
+          getAllTodos()
+        })
+    } catch (error) {
+        console.log(error);
+    }
+  };
+
+  const deleteTodo = async (id) => {
+    try {
+      await axios
+        .get(`http://localhost:2727/todos/remove/${id}`)
+        .then(function () {
+          getAllTodos()
+        })
+    } catch (error) {
+        console.log(error);
+    }
+  };
+
+  const editTodo = async (id) => {
+    try {
+      await axios
+        .put(`http://localhost:2727/todos/update/${id}`)
+        .then(function () {
+          getAllTodos()
+        })
+    } catch (error) {
+        console.log(error);
+    }
+  };
+
   return {
     state,
-    getAllTodos
+    getAllTodos,
+    addTodo,
+    deleteTodo,
+    editTodo
   }
 };
 
